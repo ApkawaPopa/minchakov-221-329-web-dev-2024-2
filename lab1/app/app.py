@@ -6,7 +6,6 @@ fake = Faker()
 
 app = Flask(__name__)
 app.secret_key = '42'
-application = app
 
 images_ids = ['7d4e9175-95ea-4c5f-8be5-92a6b708bb3c',
               '2d2ab7df-cdbc-48a8-a936-35bba702def5',
