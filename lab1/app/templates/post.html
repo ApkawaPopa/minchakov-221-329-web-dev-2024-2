@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="post-title">{{ post.title }}</h1>
+        <div class="post-meta">
+            {{ post.author }}, {{ post.date.strftime('%d.%m.%Y') }}
+        </div>
+        <div class="align-image">
+            <img src="{{ url_for('static', filename='images/' + post.image_id) }}" alt="Post Image" class="post-image">
+        </div>
+        <div class="post-text">
+            {{ post.text }}
+        </div>
+        <div class="comment-form">
+            <h2>Оставить комментарий</h2>
+            <form method="post" action="{{ url_for('post_comment', post_image_id=post.image_id) }}">
+                <label>
+                    Имя:
+                    <input type="text" name="author" placeholder="Ваше имя" required>
+                </label>
+                <label>
+                    Комментарий:
+                    <textarea name="text" placeholder="Ваш комментарий" required></textarea>
+                </label>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+        <div class="comments">
+            <h2>Комментарии</h2>
+            {{ render_comments(post.comments) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% macro render_comments(comments) %}
+    {% for comment in comments %}
+        <div class="d-flex">
+            <div class="flex-shrink-0">
+                <img src="{{ url_for('static', filename='images/comment-avatar.png') }}" class="rounded-circle"
+                     width="50" height="50" alt="Avatar for comment profile">
+            </div>
+            <div class="flex-grow-1 ms-3">
+                <h5>{{ comment.author }}</h5>
+                <p>{{ comment.text }}</p>
+                {{ render_comments(comment.replies) }}
+            </div>
+        </div>
+    {% endfor %}
+{% endmacro %}
