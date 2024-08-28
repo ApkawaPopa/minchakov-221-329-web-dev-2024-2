@@ -1,11 +1,13 @@
 import random
+import uuid
+
 from flask import Flask, render_template, request, redirect, flash, url_for
 from faker import Faker
 
 fake = Faker()
 
 app = Flask(__name__)
-app.secret_key = '42'
+app.secret_key = str(uuid.uuid4())
 
 images_ids = ['7d4e9175-95ea-4c5f-8be5-92a6b708bb3c',
               '2d2ab7df-cdbc-48a8-a936-35bba702def5',
@@ -83,7 +85,3 @@ def post_comment(post_image_id):
 @app.route('/about')
 def about():
     return render_template('about.html', title='Об авторе')
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
