@@ -1,5 +1,4 @@
 {% macro render_table(table_content) %}
-    <h1>{{ title }}</h1>
     {% if table_content | length != 0 %}
         <table>
             <thead>
@@ -62,6 +61,7 @@
         </header>
 
         <main>
+            <h1>{{ title if title else "Лабораторная работа №2" }}</h1>
             {% block content %}
             {% endblock %}
         </main>
