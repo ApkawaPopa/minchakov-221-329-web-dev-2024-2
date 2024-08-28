@@ -1,0 +1,140 @@
+html {
+    font-size: 18px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem 1.5rem;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+}
+
+main {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+    margin: 4% 8%;
+}
+
+dl {
+    margin-top: 1.5rem;
+    list-style-type: disc;
+}
+
+dt {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 1.2em;
+    color: #444;
+}
+
+dd {
+    display: list-item;
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+table th, table td {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    text-align: left;
+    vertical-align: top;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+table th {
+    background-color: #333;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+form {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+form label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+}
+
+form button {
+    background-color: #333;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+form button:hover {
+    background-color: #575757;
+}
+
+#phone {
+    margin-bottom: 0;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem 1.5rem;
+    background-color: #333;
+    color: white;
+}

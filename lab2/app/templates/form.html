@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{{ render_table(request.form) }}
+
+    <form action="{{ url_for('form') }}" method="post">
+        <label>
+            Имя
+            <input name="name" placeholder="Введите имя">
+        </label>
+        <label>
+            Комментарий
+            <textarea name="comment" placeholder="Введите комментарий"></textarea>
+        </label>
+        <button type="submit">Отправить</button>
+    </form>
+{% endblock %}

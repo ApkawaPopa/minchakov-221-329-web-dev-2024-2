@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Проверка телефонного номера</h1>
+
+    <form method="post" action="{{ url_for('phone') }}">
+        <div class="form-group">
+            <label for="phone">
+                Номер телефона:
+            </label>
+
+            {% with messages = get_flashed_messages(with_categories=True) %}
+                <input id="phone"
+                       class="form-control {{ 'is-invalid' if messages[0][0] != 'valid-feedback' else 'is-valid' }}"
+                       name="phone"
+                       type="tel"
+                       {% if phone %}
+                            value="{{ phone }}"
+                       {% else %}
+                            placeholder="8-012-345-67-89"
+                       {% endif %}
+                       required>
+
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <button type="submit">Проверить</button>
+    </form>
+{% endblock %}
