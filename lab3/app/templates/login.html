@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post" action="{{ url_for('login') }}">
+        <label>
+            Имя пользователя
+            <input type="text" name="username" placeholder="username" required>
+        </label>
+
+        <label>
+            Пароль
+            <input type="password" name="password" placeholder="password" required>
+        </label>
+
+        <label class="remember">
+            <input type="checkbox" name="remember">
+            Запомнить меня
+        </label>
+
+        <button type="submit">Войти</button>
+    </form>
+{% endblock %}

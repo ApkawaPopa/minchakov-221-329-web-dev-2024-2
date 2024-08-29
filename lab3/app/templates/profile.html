@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table>
+        <tbody>
+            <tr>
+                <td>Имя пользователя</td>
+                <td>{{ current_user.username }}</td>
+            </tr>
+            <tr>
+                <td>ID пользователя</td>
+                <td>{{ current_user.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
