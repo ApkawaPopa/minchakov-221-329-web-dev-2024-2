@@ -4,7 +4,7 @@ import uuid
 from flask import Flask, render_template, request, make_response, flash
 
 app = Flask(__name__)
-app.secret_key = str(uuid.uuid4())
+app.config['SECRET_KEY'] = str(uuid.uuid4())
 
 
 @app.route('/')
