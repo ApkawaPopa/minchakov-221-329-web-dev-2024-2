@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post" action="{{ url_for('update', id=id) }}">
+        {{ form.hidden_tag() }}
+
+        {% for field in form if field.name not in ['csrf_token', 'submit'] %}
+            {{ field.label() }}
+            {% if field.errors %}
+                {{ field(class='invalid') }}
+                <div class="feedback">
+                    {% for error in field.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ field() }}
+            {% endif %}
+        {% endfor %}
+
+        {{ form.submit() }}
+    </form>
+{% endblock %}

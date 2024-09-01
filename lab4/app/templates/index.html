@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Список пользователей</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>ФИО</th>
+                <th>Роль</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ user.last_name }} {{ user.first_name }}{{ (' ' + user.patronymic) if user.patronymic else '' }}</td>
+                <td>{{ user.role.name if user.role else 'Нет роли' }}</td>
+                <td class="actions">
+                    <a href="{{ url_for('read', id=user.id) }}" class="action-read">Просмотр</a>
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('update', id=user.id) }}" class="action-update">Редактирование</a>
+                        <form action="{{ url_for('delete', id=user.id) }}" method="POST" class="action-delete">
+                            <input type="submit" onclick="return confirm(
+                                'Вы уверены, что хотите удалить пользователя {{ user.first_name }}{% if user.patronymic %}{{ ' ' + user.patronymic }}{% endif %} {{ user.last_name }}?'
+                            )" value="Удаление">
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if current_user.is_authenticated %}
+        <a href="{{ url_for('create') }}" class="create">Создание пользователя</a>
+    {% endif %}
+{% endblock %}

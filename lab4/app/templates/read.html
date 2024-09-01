@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table class="read">
+        <tr>
+            <th>Идентификатор</th>
+            <td>{{ user.id }}</td>
+        </tr>
+        <tr>
+            <th>Логин</th>
+            <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+            <th>Фамилия</th>
+            <td>{{ user.last_name }}</td>
+        </tr>
+        <tr>
+            <th>Имя</th>
+            <td>{{ user.first_name }}</td>
+        </tr>
+        <tr>
+            <th>Отчество</th>
+            <td>{{ user.patronymic }}</td>
+        </tr>
+        <tr>
+            <th>Роль</th>
+            <td>{{ user.role.name if user.role else 'Нет роли' }}</td>
+        </tr>
+    </table>
+{% endblock %}

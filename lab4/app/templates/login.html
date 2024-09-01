@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post" action="{{ url_for('login') }}">
+        {{ form.hidden_tag() }}
+
+        {% for field in form if field.name not in ['csrf_token', 'submit', 'remember'] %}
+            {{ field.label() }}
+            {% if field.errors %}
+                {{ field(class='invalid') }}
+                <div class="feedback">
+                    {% for error in field.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ field() }}
+            {% endif %}
+        {% endfor %}
+
+        <div class="remember">
+            {{ form.remember.label() }} {{ form.remember() }}
+        </div>
+        {{ form.submit() }}
+    </form>
+{% endblock %}
