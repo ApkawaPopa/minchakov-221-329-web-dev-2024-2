@@ -13,7 +13,7 @@ class Users(db.Model, UserMixin):
     first_name = db.Column(db.String(50), nullable=False)
     patronymic = db.Column(db.String(50), nullable=True)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=True)
-    creation_time = db.Column(db.DateTime, default=datetime.now())
+    creation_time = db.Column(db.DateTime, default=datetime.now)
 
     role = db.relationship('Roles', backref='Users')
 
