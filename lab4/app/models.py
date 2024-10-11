@@ -15,7 +15,7 @@ class Users(db.Model, UserMixin):
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=True)
     creation_time = db.Column(db.DateTime, default=datetime.now)
 
-    role = db.relationship('Roles', backref='Users')
+    role = db.relationship('Roles')
 
 
 class Roles(db.Model):

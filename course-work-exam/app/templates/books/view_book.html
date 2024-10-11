@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="{{ url_for('static', filename='images/'  ~ cover_data.filename ~ '.' ~ cover_data.mime_type) }}"
+                     class="img-fluid" alt="Обложка книги">
+            </div>
+            <div class="col-md-8">
+                <h1>{{ book.name }}</h1>
+                <p><strong>Автор:</strong> {{ book.author }}</p>
+                <p><strong>Год издания:</strong> {{ book.year }}</p>
+                <p><strong>Издатель:</strong> {{ book.publisher }}</p>
+                <p><strong>Количество страниц:</strong> {{ book.page_count }}</p>
+                <p><strong>Жанры:</strong> {{ genres }}</p>
+                <div class="mt-3">
+                    <strong>Краткое описание</strong>
+                    <div class="mt-2">{{ book.description | safe }}</div>
+                </div>
+            </div>
+        </div>
+        {% if reviews %}
+            <div class="mt-5">
+                <h3>Рецензии</h3>
+                <div>
+                    {% for review in reviews %}
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ review.user.username }} - Оценка: {{ grade_mapping[review.grade] }}</h5>
+                                <p class="card-text">{{ review.text | safe }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        {% if current_user.is_authenticated %}
+            {% if not user_review %}
+                <div class="mt-5">
+                    <a href="{{ url_for('reviews.write_review', book_id=book.id) }}" class="btn btn-dark">Написать
+                        рецензию</a>
+                </div>
+            {% else %}
+                <div class="mt-5">
+                    <h4>Ваша рецензия</h4>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Оценка: {{ grade_mapping[user_review.grade] }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Статус: {{ user_review.status.name }}</h6>
+                            <p class="card-text">{{ user_review.text | safe }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

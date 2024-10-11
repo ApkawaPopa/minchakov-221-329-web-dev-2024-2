@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ review.user.username }} - Оценка: {{ grade_mapping[review.grade] }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Книга: {{ review.book.name }}</h6>
+            <p class="card-text">{{ review.text | safe }}</p>
+        </div>
+    </div>
+    <div class="mb-2">
+        <form action="{{ url_for('reviews.accept', review_id=review.id) }}" method="post" style="display: inline;">
+            <button type="submit" class="btn btn-success">Одобрить</button>
+        </form>
+        <form action="{{ url_for('reviews.decline', review_id=review.id) }}" method="post" style="display: inline;">
+            <button type="submit" class="btn btn-danger">Отклонить</button>
+        </form>
+    </div>
+{% endblock %}

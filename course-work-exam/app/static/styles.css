@@ -1,0 +1,43 @@
+main {
+    min-height: 85vh;
+}
+.dark-background {
+    background-color: #011627;
+}
+.book-card, .book-card-edit {
+    align-items: center;
+    height: 760px;
+    border: 2px solid #afb9ba;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #d3ecef;
+}
+.book-card img {
+    width: 400px;
+    height: 550px;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 1px solid #969ab3;
+    padding: 5px;
+    background-color: #a2adeb;
+}
+.book-card-edit img {
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 1px solid #969ab3;
+    padding: 5px;
+    background-color: #a2adeb;
+}
+.book-card p, .book-card-edit p {
+    margin: 0;
+    font-size: 1rem;
+}
+.bg {
+    background-color: rgb(230, 250, 250);
+}
+.text-justify {
+    text-align: justify;
+}

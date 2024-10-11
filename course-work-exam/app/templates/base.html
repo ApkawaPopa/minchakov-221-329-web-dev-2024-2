@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% block head %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            Электронная библиотека
+        </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+    {% endblock %}
+</head>
+
+<body>
+<header class="dark-background text-white">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="btn btn-outline-light me-2" href="{{ url_for('index') }}">Книги</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {% if current_user.is_authenticated %}
+                        {% if current_user.role.name == 'user' %}
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page"
+                                   href="{{ url_for('reviews.my_reviews') }}">Мои рецензии</a>
+                            </li>
+                        {% elif current_user.role.name == 'moderator' %}
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page"
+                                   href="{{ url_for('reviews.moderate') }}">Модерация рецензий</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                               href="{{ url_for('auth.logout') }}">Выйти</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ url_for('auth.login') }}">
+                                Войти </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="container py-5">
+    <div class="alerts">
+        {% for category, message in get_flashed_messages(True) %}
+            <div class="alert alert-{{ category }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer class="py-4 text-center bg-dark text-white">
+    <p>Минчаков Аркадий Сергеевич, группа 221-329</p>
+</footer>
+<script src="{{ url_for('static', filename='user_delete_modal.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+<script>
+    var easyMDE = new EasyMDE({element: document.getElementById("description")});
+    var easyMDE = new EasyMDE({element: document.getElementById("text")});
+</script>
+</body>
+</html>

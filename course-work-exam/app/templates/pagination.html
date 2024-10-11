@@ -1,0 +1,28 @@
+{% macro render_pagination(pagination, endpoint, params={}) %}
+    {% set per_page = pagination.per_page %}
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item {% if not pagination.has_prev %}disabled{% endif %}">
+                <a class="page-link"
+                   href="{{ url_for(endpoint, page=(pagination.page - 1), per_page=per_page, **params) if pagination.has_prev else '#' }}"
+                   aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% for page in range(1, pagination.pages + 1) %}
+                <li class="page-item {% if page == pagination.page %}active{% endif %}">
+                    <a class="page-link" href="{{ url_for(endpoint, page=page, per_page=per_page, **params) }}">
+                        {{ page }}
+                    </a>
+                </li>
+            {% endfor %}
+            <li class="page-item {% if not pagination.has_next %}disabled{% endif %}">
+                <a class="page-link"
+                   href="{{ url_for(endpoint, page=(pagination.page + 1), per_page=per_page, **params) if pagination.has_next else '#' }}"
+                   aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+{% endmacro %}

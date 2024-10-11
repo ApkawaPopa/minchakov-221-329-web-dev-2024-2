@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Мои рецензии</h1>
+    <br>
+
+    {% for review in reviews %}
+        <div class="row">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Оценка: {{ grade_mapping[review.grade] }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Статус: {{ review.status.name }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Книга: {{ review.book.name }}</h6>
+                    <p class="card-text">{{ review.text | safe }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% from "pagination.html" import render_pagination %}
+    {{ render_pagination(pagination, 'reviews.my_reviews') }}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Название книги</th>
+                <th>Имя пользователя</th>
+                <th>Оценка</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in reviews %}
+                <tr>
+                    <td>{{ review.book.name }}</td>
+                    <td>{{ review.user.username }}</td>
+                    <td>{{ grade_mapping[review.grade] }}</td>
+                    <td>
+                        <a href="{{ url_for('reviews.moderate_review', review_id=review.id) }}" class="btn btn-info">Рассмотреть</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% from "pagination.html" import render_pagination %}
+    {{ render_pagination(pagination, 'reviews.moderate') }}
+{% endblock %}

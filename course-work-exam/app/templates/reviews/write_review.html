@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="text-center">
+                <h1>Написать рецензию</h1>
+            </div>
+            <form method="post">
+                <div class="form-group mb-3">
+                    <label for="grade">Оценка</label>
+                    <select class="form-control" id="grade" name="grade">
+                        {% for grade_text in grade_mapping[::-1] %}
+                            <option value="{{ grade_mapping | length - loop.index }}">{{ grade_text }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="text">Текст рецензии</label>
+                    <textarea class="form-control" id="text" name="text" rows="5"></textarea>
+                </div>
+                <div class="d-grid my-5 ">
+                    <button type="submit" class="btn btn-dark">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
